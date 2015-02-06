@@ -1,0 +1,24 @@
+{
+  "name": "nowp/nowp",
+  "description": "the best way to join people to party",
+  "minimum-stability": "dev",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Daniel Lima",
+      "email": "yourwebmaker@gmail.com"
+    },
+    {
+      "name": "Renato Medina",
+      "email": "medinadato@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Nowp\\Tests\\": "tests/"
+    },
+    "psr-0": {
+      "Nowp\\": "src/"
+    }
+  }
+}
