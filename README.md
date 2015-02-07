@@ -1,5 +1,5 @@
 # Nowp (or Nowpp?)
-- Are you bored stuck in your house because there's nothing different to party?
+- Are you bored and stuck in your house because there's nothing different to party?
 - Do you love to join your friends together to play some music, to know new people or perhaps to have a barbecue?
 - Do you love uncommon things, surprises and everything that this wonderful world can show to you but you are a bit shy? 
 
