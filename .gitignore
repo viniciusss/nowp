@@ -3,3 +3,5 @@
 /vendor/
 /.idea/
 /bin/
+/app/cache/
+/app/logs/
