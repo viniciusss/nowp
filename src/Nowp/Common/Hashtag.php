@@ -3,7 +3,7 @@
  *
  */
 
-namespace Nowp\Domain\Common;
+namespace Nowp\Common;
 
 
 class Hashtag 

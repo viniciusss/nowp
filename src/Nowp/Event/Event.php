@@ -3,12 +3,13 @@
  *
  */
 
-namespace Nowp\Domain\Event;
+namespace Nowp\Event;
 
 use \DateTime;
-use Nowp\Domain\Common\Price;
-use Nowp\Domain\Common\Hashtag;
-use Nowp\Domain\Location\Location;
+use Nowp\Common\Price;
+use Nowp\Common\Hashtag;
+use Nowp\Common\Url;
+use Nowp\Location\Location;
 
 class Event 
 {
@@ -41,6 +42,10 @@ class Event
      * @var Location
      */
     protected $location;
+    /**
+     * @var Url
+     */
+    protected $link;
 
     function setName($name)
     {
@@ -142,5 +147,13 @@ class Event
         return $this->location;
     }
 
+    function setLink(Url $url = null)
+    {
+        $this->url = $url;
+    }
 
+    function getLink()
+    {
+        return $this->url;
+    }
 }

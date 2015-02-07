@@ -5,11 +5,12 @@
 
 namespace Nowp\Tests\Event;
 
-use Nowp\Domain\Common\Price;
-use Nowp\Domain\Event\Event;
+use Nowp\Common\Price;
+use Nowp\Event\Event;
 use Nowp\Tests\UnitTestCase;
+use Nowp\Common\Url;
 
-class EventDefinitionTest extends UnitTestCase
+class EventTest extends UnitTestCase
 {
     function testInstantiateAnEvent()
     {
@@ -23,8 +24,9 @@ class EventDefinitionTest extends UnitTestCase
         $this->eventManPrice = new Price();
         $this->eventWomanPrice = new Price();
         $this->eventDescription = 'A short description';
-        $this->eventHashtag = $this->getMock('Nowp\\Domain\\Common\\Hashtag');
-        $this->eventLocation = $this->getMock('Nowp\\Domain\\Location\\Location');
+        $this->eventHashtag = $this->getMock('Nowp\\Common\\Hashtag');
+        $this->eventLocation = $this->getMock('Nowp\\Location\\Location');
+        $this->eventUrl = new Url('https://www.facebook.com/events/1579567718946519/');
     }
 
     function testCanConfigureEvent()
@@ -37,6 +39,7 @@ class EventDefinitionTest extends UnitTestCase
         $event->setDescription($this->eventDescription);
         $event->setHashtag($this->eventHashtag);
         $event->setLocation($this->eventLocation);
+        $event->setLink($this->eventUrl);
         return $event;
     }
 
@@ -62,5 +65,6 @@ class EventDefinitionTest extends UnitTestCase
         $this->assertEquals($this->eventDescription, $event->getDescription());
         $this->assertEquals($this->eventHashtag, $event->getHashtag());
         $this->assertEquals($this->eventLocation, $event->getLocation());
+        $this->assertEquals($this->eventUrl, $event->getLink());
     }
 }

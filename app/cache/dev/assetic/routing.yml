@@ -1,5 +1,0 @@
-_assetic:
-    resource: .
-    type: assetic
-_app:
-    resource: /Users/yourwebmaker/Sites/Cilens/nowp/app/config/routing_dev.yml

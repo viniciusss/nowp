@@ -3,7 +3,7 @@
  *
  */
 
-namespace Nowp\Domain\Location;
+namespace Nowp\Location;
 
 
 class Location 
