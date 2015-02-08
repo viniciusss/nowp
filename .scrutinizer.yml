@@ -13,6 +13,7 @@ tools:
         config:
             standard: "PSR2"
     php_mess_detector: true
+    external_code_coverage: true
 checks:
     php:
         argument_type_checks: true
