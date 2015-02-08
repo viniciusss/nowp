@@ -6,6 +6,7 @@
 namespace Nowp\Event;
 
 use \DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
 use Nowp\Common\Price;
 use Nowp\Common\Hashtag;
 use Nowp\Common\Url;
@@ -46,6 +47,22 @@ class Event
      * @var Url
      */
     protected $link;
+
+    /**
+     * List of Members
+     * @var ArrayCollection
+     */
+    protected $members;
+
+    /**
+     * @var null
+     */
+    protected $maxAttendees = null;
+
+    function __construct()
+    {
+        $this->members = new ArrayCollection();
+    }
 
     function setName($name)
     {
@@ -155,5 +172,23 @@ class Event
     function getLink()
     {
         return $this->url;
+    }
+
+    function getMembers()
+    {
+        return $this->members;
+    }
+
+    function setMaxAttendees($maxAttendees)
+    {
+        $this->maxAttendees = $maxAttendees;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getMaxAttendees()
+    {
+        return $this->maxAttendees;
     }
 }

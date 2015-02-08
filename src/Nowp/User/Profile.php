@@ -30,7 +30,7 @@ class Profile
 
     function getAge()
     {
-        return 27;
+        return $this->dateOfBirth->diff(new \DateTime('now'))->y;
     }
 
     function getUser()
