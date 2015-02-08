@@ -21,12 +21,7 @@ class MessageTest extends UnitTestCase
         $this->author = $this->getMock(Author::class);
     }
 
-    function testCanCreateAMessage()
-    {
-        new Message('message content', $this->author, $this->event);
-    }
-
-    function testCanRetrieveMemberFromAMessage()
+    function testCanRetrieveMessageData()
     {
         $message = new Message('message content', $this->author, $this->event);
         $this->assertEquals('message content', $message->getContent());

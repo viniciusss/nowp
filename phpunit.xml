@@ -5,6 +5,15 @@
          backupGlobals="false"
          colors="true"
          bootstrap="vendor/autoload.php"
+         strict="true"
+         verbose="false"
+         beStrictAboutTestsThatDoNotTestAnything="true"
+
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+
+
         >
     <php>
         <!-- Disable E_USER_DEPRECATED until 3.0 -->

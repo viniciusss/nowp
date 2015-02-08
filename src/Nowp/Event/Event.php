@@ -10,6 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Nowp\Common\Price;
 use Nowp\Common\Hashtag;
 use Nowp\Common\Url;
+use Nowp\Event\Crew\Crew;
 use Nowp\Location\Location;
 
 class Event 
@@ -49,10 +50,10 @@ class Event
     protected $link;
 
     /**
-     * List of Members
-     * @var ArrayCollection
+     * List of People who would attend to event
+     * @var Crew
      */
-    protected $members;
+    protected $crew;
 
     /**
      * @var null
@@ -61,7 +62,7 @@ class Event
 
     function __construct()
     {
-        $this->members = new ArrayCollection();
+        $this->crew = new Crew();
     }
 
     function setName($name)
@@ -174,9 +175,9 @@ class Event
         return $this->url;
     }
 
-    function getMembers()
+    function getCrew()
     {
-        return $this->members;
+        return $this->crew;
     }
 
     function setMaxAttendees($maxAttendees)

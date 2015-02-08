@@ -12,11 +12,6 @@ use Nowp\Common\Url;
 
 class EventTest extends UnitTestCase
 {
-    function testInstantiateAnEvent()
-    {
-        new Event();
-    }
-
     function setUp()
     {
         $this->eventName = 'event-name';
@@ -40,6 +35,7 @@ class EventTest extends UnitTestCase
         $event->setHashtag($this->eventHashtag);
         $event->setLocation($this->eventLocation);
         $event->setLink($this->eventUrl);
+        $this->assertInstanceOf(Event::class, $event);
         return $event;
     }
 
