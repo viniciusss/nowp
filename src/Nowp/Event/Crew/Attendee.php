@@ -18,7 +18,7 @@ class Membership
     /**
      * @var bool
      */
-    protected $attended = false;
+    protected $hasArrived = false;
     /**
      * @var Event
      */
@@ -49,9 +49,9 @@ class Membership
         return $this->id;
     }
 
-    function attend()
+    function arrive()
     {
-        $this->attended = true;
+        $this->hasArrived = true;
     }
 
     function getAttended()

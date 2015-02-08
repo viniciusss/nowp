@@ -19,7 +19,7 @@ interface MembershipRepository
     function find($membershipId);
 
     /**
-     * Finds all people who attended to an specific event
+     * Finds all people who REALLY attended to an event
      *
      * @param Event $event
      * @return Crew
