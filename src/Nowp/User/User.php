@@ -6,10 +6,12 @@
 namespace Nowp\User;
 
 
+use Nowp\Event\Attendee;
 use Nowp\Event\Event;
 use Nowp\Event\EventCrew;
 use Nowp\Event\EventCrewItem;
 use Nowp\Event\Exception\MaxAttendeesException;
+use Nowp\Event\Exception\TooManyAttendeesException;
 use Nowp\Event\Member;
 
 class User
@@ -42,8 +44,13 @@ class User
         return $this->profile;
     }
 
-
-
+    function join(Event $event)
+    {
+        if (!$event->allowNewMembers()) {
+            throw new TooManyAttendeesException();
+        }
+        return new Attendee($this, $event);
+    }
 
     function getEvents()
     {

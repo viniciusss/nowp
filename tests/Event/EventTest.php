@@ -11,6 +11,7 @@ use Nowp\Tests\UnitTestCase;
 use Nowp\Common\Url;
 use Nowp\Common\Hashtag;
 use Nowp\Location\Location;
+use Nowp\User\User;
 
 class EventTest extends UnitTestCase
 {
@@ -64,5 +65,17 @@ class EventTest extends UnitTestCase
         $this->assertEquals($this->eventHashtag, $event->getHashtag());
         $this->assertEquals($this->eventLocation, $event->getLocation());
         $this->assertEquals($this->eventUrl, $event->getLink());
+    }
+
+    function testMustNotAllowNewMembersWhenAnEventIsFull()
+    {
+        $event = new Event();
+        $event->setMaxAttendees(10);
+
+        foreach (range(0, 11) as $i) {
+            $event->joinUser(new User());
+        }
+
+        $this->assertFalse($event->allowNewMembers());
     }
 }

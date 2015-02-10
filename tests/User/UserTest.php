@@ -10,6 +10,7 @@ use Nowp\Event\Event;
 use Nowp\Tests\UnitTestCase;
 use Nowp\User\User;
 use Nowp\User\Profile;
+use Nowp\Event\Attendee;
 
 
 class UserTest extends UnitTestCase
@@ -36,86 +37,25 @@ class UserTest extends UnitTestCase
         $this->assertSame($profile, $this->user->getProfile());
     }
 
-    function testJoiningAnUserToAnEventMustReturnAMembershipInstance()
+    function testJoiningToAnEventMustReturnAnAttendeeInstance()
     {
-        $this->membershipRepository->expects($this->once())
-            ->method('findAttendees')
-            ->will($this->returnValue($this->getAttendeeList($this->event)))
-        ;
-
-        $this->crewManager = new CrewManager($this->membershipRepository);
-
         $this->assertInstanceOf(
             Attendee::class,
-            $this->crewManager->joinUserToEvent($this->user, $this->event)
+            $this->user->join($this->event)
         );
     }
 
     /**
-     * @expectedException \Nowp\Event\Exception\MaxAttendeesException
+     * @expectedException \Nowp\Event\Exception\TooManyAttendeesException
      */
     function testJoiningAnUserToAnEventThatHasTooManyAttendeesMustThrowAnException()
     {
-        $userTryingToJoin = new User();
+        $this->event->setMaxAttendees(10);
 
-        $this->membershipRepository->expects($this->once())
-            ->method('findAttendees')
-            ->will($this->returnValue($this->getAttendeeList($this->event, $this->maxAttendees)))
-        ;
-
-        $this->crewManager = new CrewManager($this->membershipRepository);
-        $this->crewManager->joinUserToEvent($userTryingToJoin, $this->event);
-    }
-
-    function testSizeOfCrewShouldIncreaseAfterJoiningAnEvent()
-    {
-        $crew = $this->event->getCrew()->count();
-
-        $this->membershipRepository->expects($this->once())
-            ->method('findAttendees')
-            ->will($this->returnValue($this->getAttendeeList($this->event)))
-        ;
-        $this->crewManager = new CrewManager($this->membershipRepository);
-
-        $this->crewManager->joinUserToEvent($this->user, $this->event);
-        $this->assertGreaterThan($crew, $this->event->getCrew()->count());
-    }
-
-    function testSetMembershipAttendedSetTheMembershipAsAttended()
-    {
-        $membership = new Attendee($this->user, $this->event);
-
-        $repositoryMock = $this->getMockBuilder(AttendeeRepository::class)->getMock();
-        $repositoryMock->expects($this->once())
-            ->method('find')
-            ->will($this->returnValue($membership))
-        ;
-
-        $this->crewManager = new CrewManager($repositoryMock);
-        $this->assertTrue($this->crewManager->setMembershipAttended(1)->getAttended());
-    }
-
-    /**
-     * @expectedException \Nowp\Event\Crew\Exception\MembershipNotFoundException
-     */
-    function testShouldThrowExceptionWhenMembershipDoesNotExists()
-    {
-        $repositoryMock = $this->getMockBuilder(AttendeeRepository::class)->getMock();
-        $repositoryMock->expects($this->once())
-            ->method('find')
-            ->will($this->returnValue(null))
-        ;
-
-        $this->crewManager = new CrewManager($repositoryMock);
-        $this->crewManager->setMembershipAttended(999);
-    }
-
-    private function getAttendeeList(Event $event, $size = 5)
-    {
-        for ($i = 0; $i <= $size; $i++) {
-            $membership[$i] = new Attendee(new User(), $event);
-            $membership[$i]->attend();
+        for ($i = 0; $i <= $this->event->getMaxAttendees(); $i++) {
+            $this->event->joinUser(new User());
         }
-        return new Crew($membership);
+
+        $this->user->join($this->event);
     }
 }

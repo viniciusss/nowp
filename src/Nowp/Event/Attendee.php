@@ -6,9 +6,9 @@
 namespace Nowp\Event;
 
 
+use Nowp\Event\Exception\AlreadyOnTheEventException;
 use Nowp\User\User;
-use Nowp\Event\Exception\ArrivingToSameEventWithoutLeavingException;
-use Symfony\Component\HttpKernel\Exception\NotAcceptableHttpException;
+use Nowp\Event\Exception\NotArrivedYetException;
 
 class Attendee
 {
@@ -52,6 +52,9 @@ class Attendee
 
     function arrive()
     {
+        if ($this->hasArrived) {
+            throw new AlreadyOnTheEventException();
+        }
         $this->hasArrived = true;
     }
 
@@ -64,7 +67,7 @@ class Attendee
     function leave()
     {
         if (!$this->hasArrived()) {
-            throw new NotAcceptableHttpException();
+            throw new NotArrivedYetException();
         }
     }
 }

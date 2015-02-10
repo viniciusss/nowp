@@ -3,7 +3,7 @@
  *
  */
 
-namespace Nowp\Tests\Event\Crew;
+namespace Nowp\Tests\Event;
 
 
 use Nowp\Event\Attendee;
@@ -29,17 +29,17 @@ class AttendeeTest extends UnitTestCase
     }
 
     /**
-     * @expectedException \Nowp\Event\Exception\NotAttendedYetException
-     * @expectedExceptionMessage "Cannot leave an event without arriving there"
+     * @expectedException \Nowp\Event\Exception\NotArrivedYetException
+     * @expectedExceptionMessage Cannot leave an event without arriving there
      */
-    function testLeavingAnEventWithoutAttendingItMustThrowAnException()
+    function testLeavingAnEventWithoutArrivingThereMustThrowAnException()
     {
         $attendee = new Attendee(new User(), new Event());
         $attendee->leave();
     }
 
     /**
-     * @expectedException \Nowp\Event\Exception\ArrivingToSameEventWithoutLeavingException
+     * @expectedException \Nowp\Event\Exception\AlreadyOnTheEventException
      */
     function testAnAttendeeCannotArriveToAnEventWhereHeIsAlreadyIn()
     {

@@ -12,6 +12,7 @@ use Nowp\Common\Hashtag;
 use Nowp\Common\Url;
 use Nowp\Event\Crew\Crew;
 use Nowp\Location\Location;
+use Nowp\User\User;
 
 class Event 
 {
@@ -50,19 +51,13 @@ class Event
     protected $link;
 
     /**
-     * List of People who would attend to event
-     * @var Crew
-     */
-    protected $crew;
-
-    /**
      * @var null
      */
     protected $maxAttendees = null;
 
     function __construct()
     {
-        $this->crew = new Crew();
+        $this->attendees = new ArrayCollection();
     }
 
     function setName($name)
@@ -175,11 +170,6 @@ class Event
         return $this->url;
     }
 
-    function getCrew()
-    {
-        return $this->crew;
-    }
-
     function setMaxAttendees($maxAttendees)
     {
         $this->maxAttendees = $maxAttendees;
@@ -191,5 +181,20 @@ class Event
     public function getMaxAttendees()
     {
         return $this->maxAttendees;
+    }
+
+    function joinUser(User $user) {
+        $this->attendees->add(new Attendee($user, $this));
+    }
+
+    /**
+     * @return bool
+     */
+    function allowNewMembers()
+    {
+        if ($this->maxAttendees === null) {
+            return true;
+        }
+        return $this->getMaxAttendees() > $this->attendees->count();
     }
 }
