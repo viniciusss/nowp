@@ -4,6 +4,14 @@ build:
         redis: false
         php:
             version: 5.6
+    tests:
+        override:
+            -
+                command: phpunit --coverage-clover=my-coverage-file
+                coverage:
+                    file: my-coverage-file
+                    format: php-clover
+
 tools:
     php_sim: true
     php_pdepend: true
@@ -52,4 +60,4 @@ checks:
 
 filter:
     excluded_paths:
-        - test/*
+        - tests/*
