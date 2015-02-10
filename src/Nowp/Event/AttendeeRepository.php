@@ -8,15 +8,15 @@ namespace Nowp\Event\Crew;
 
 use Nowp\Event\Event;
 
-interface MembershipRepository
+interface AttendeeRepository
 {
     /**
      * Finds an event membership
      *
-     * @param $membershipId
-     * @return Membership|null
+     * @param $attendeeId
+     * @return Attendee|null
      */
-    function find($membershipId);
+    function find($attendeeId);
 
     /**
      * Finds all people who REALLY attended to an event

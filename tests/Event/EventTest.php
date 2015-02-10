@@ -9,6 +9,8 @@ use Nowp\Common\Price;
 use Nowp\Event\Event;
 use Nowp\Tests\UnitTestCase;
 use Nowp\Common\Url;
+use Nowp\Common\Hashtag;
+use Nowp\Location\Location;
 
 class EventTest extends UnitTestCase
 {
@@ -19,8 +21,8 @@ class EventTest extends UnitTestCase
         $this->eventManPrice = new Price();
         $this->eventWomanPrice = new Price();
         $this->eventDescription = 'A short description';
-        $this->eventHashtag = $this->getMock('Nowp\\Common\\Hashtag');
-        $this->eventLocation = $this->getMock('Nowp\\Location\\Location');
+        $this->eventHashtag = $this->getMock(Hashtag::class);
+        $this->eventLocation = $this->getMock(Location::class);
         $this->eventUrl = new Url('https://www.facebook.com/events/1579567718946519/');
     }
 

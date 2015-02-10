@@ -3,13 +3,14 @@
  *
  */
 
-namespace Nowp\Event\Crew;
+namespace Nowp\Event;
 
 
-use Nowp\Event\Event;
 use Nowp\User\User;
+use Nowp\Event\Exception\ArrivingToSameEventWithoutLeavingException;
+use Symfony\Component\HttpKernel\Exception\NotAcceptableHttpException;
 
-class Membership
+class Attendee
 {
     /**
      * @var integer
@@ -54,8 +55,16 @@ class Membership
         $this->hasArrived = true;
     }
 
-    function getAttended()
+    function hasArrived()
     {
-        return $this->attended;
+        return $this->hasArrived;
+    }
+
+
+    function leave()
+    {
+        if (!$this->hasArrived()) {
+            throw new NotAcceptableHttpException();
+        }
     }
 }

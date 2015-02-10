@@ -5,9 +5,11 @@
          backupGlobals="false"
          colors="true"
          bootstrap="vendor/autoload.php"
-         strict="true"
          verbose="false"
+
          beStrictAboutTestsThatDoNotTestAnything="true"
+         beStrictAboutOutputDuringTests="true"
+         checkForUnintentionallyCoveredCode="tru"
 
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"

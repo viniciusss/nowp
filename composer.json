@@ -14,24 +14,19 @@
         }
     },
     "authors": [
-        {
-            "name": "Daniel Lima",
-            "email": "yourwebmaker@gmail.com"
-        },
-        {
-            "name": "Renato Medina",
-            "email": "medinadato@gmail.com"
-        }
+        {"name": "Daniel Lima",   "email": "yourwebmaker@gmail.com"},
+        {"name": "Renato Medina", "email": "medinadato@gmail.com"}
     ],
     "require": {
         "php": ">=5.6.2",
-        "symfony/symfony": "2.6.*",
-        "doctrine/orm": "~2.2,>=2.2.3,<2.5",
-        "doctrine/dbal": "<2.5",
+        "symfony/symfony": "2.6.*@dev",
+        "doctrine/orm": "2.5.*@dev",
+        "doctrine/dbal": ">=2.5-dev,<2.6-dev",
+        "doctrine/common": ">=2.5-dev,<2.6-dev",
         "doctrine/doctrine-bundle": "~1.2",
         "twig/extensions": "~1.0",
         "symfony/assetic-bundle": "~2.3",
-        "symfony/swiftmailer-bundle": "~2.3",
+        "symfony/swiftmailer-bundle": "~2.3@dev",
         "symfony/monolog-bundle": "~2.4",
         "sensio/distribution-bundle": "~3.0,>=3.0.12",
         "sensio/framework-extra-bundle": "~3.0,>=3.0.2",
